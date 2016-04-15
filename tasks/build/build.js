@@ -22,7 +22,9 @@ var paths = {
         './node_modules/**',
         './helpers/**',
         './**/*.html',
-        './**/*.+(jpg|png|svg)'
+        './**/*.+(jpg|png|svg)',
+        './photonui/**',
+        '.**.js'
     ],
 };
 
@@ -49,6 +51,7 @@ var bundleApplication = function () {
     return Q.all([
             bundle(srcDir.path('background.js'), destDir.path('background.js')),
             bundle(srcDir.path('app.js'), destDir.path('app.js')),
+            bundle(srcDir.path('tray.js'), destDir.path('tray.js'))
         ]);
 };
 
