@@ -14,24 +14,11 @@ import env from './env';
 var mainWindow;
 var trayWindow;
 global.trayWindow = trayWindow;
-global.tray = null;
-global.firstStart = true;
 app.on('ready', function () {
 
-    var mainWindow = createWindow('main', {
-        width: 1000,
-        height: 600
-    });
-
-    mainWindow.loadURL('file://' + __dirname + '/app.html');
-
-    if (env.name !== 'production') {
-        devHelper.setDevMenu();
-        mainWindow.openDevTools();
-    }
     global.tray = new Tray(__dirname + "/IconTemplate.png");
     var contextMenu = Menu.buildFromTemplate([{
-        label: 'Quit the App',
+        label: 'Exit',
         accelerator: 'CmdOrCtrl+S',
         click: function () {
             global.tray.emit("shutdown");
@@ -44,25 +31,32 @@ app.on('ready', function () {
         app.quit();
     });
     var trayWindow = new BrowserWindow({
-        width: 400, height: 400,
+        width: 310, height: 480,
         show: false, resizable: false, frame: false,
         movable: false
     });
-    trayWindow.loadURL(app.getAppPath() + "/tray.html");
-    trayWindow.openDevTools();
-    global.tray.on("click", function (event, bounds) {
-        console.log(typeof (bounds));
-        //trayWindow.setBounds({x : parseInt(parseInt(bounds.x) - 200), y: parseInt(parseInt(bounds.y) - 400)});
+    devHelper.setDevMenu();
+    trayWindow.loadURL(app.getAppPath() + "/app.html");
+   
+    trayWindow.on("blur",function(){
+        if(env.name === 'production')
+                trayWindow.hide();
+    });
+   
+     if (env.name !== 'production') {
+        devHelper.setDevMenu();
+        trayWindow.openDevTools();
+    }
+    
+    
+    global.tray.on( 'double-click' , function (event, bounds) {
         if (trayWindow.isVisible()) {
             trayWindow.hide();
         } else {
-
             trayWindow.webContents.send('showTrayWindow', trayWindow.id, bounds);
         }
-
     });
     global.trayWindow = trayWindow;
-
 
 });
 

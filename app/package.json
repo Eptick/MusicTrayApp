@@ -1,15 +1,15 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
+  "name": "tapp",
+  "productName": "Tray App",
   "description": "Starter for your Electron application. Out of the box ready for serious stuff.",
   "version": "0.1.0",
-  "author": "Mr Gumby",
-  "copyright": "© 2016, your company here",
+  "author": "Leon Redžić",
+  "copyright": "© 2016, Leon Redžić",
   "main": "background.js",
   "dependencies": {
-    "electron-positioner": "^2.0.3",
     "fs-jetpack": "^0.7.0",
-    "menubar": "^1.0.1"
+    "youtube-mp3-downloader": "^0.4.2",
+    "youtube-node": "^1.3.0"
   },
   "packageNameTemplate": "{{name}}-v{{version}}-{{platform}}-{{arch}}",
   "osx": {

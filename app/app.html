@@ -1,84 +1,106 @@
 <!doctype html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Electron Boilerplate</title>
+	<meta charset="utf-8">
+	<title>Music App</title>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/main.css">
 
-   <!-- <link href="stylesheets/main.css" rel="stylesheet" type="text/css"> -->
-     <link rel="stylesheet" href="photonui/css/photon.min.css">
-
-    <script src="helpers/context_menu.js"></script>
-    <script src="helpers/external_links.js"></script>
-
-    <script src="app.js"></script>
+	<script>
+		window.$ = window.jQuery = require('./js/jquery.min.js');
+	</script>
+	<script src="js/jquery.jcarousel.min.js"></script>
+	<script src="helpers/context_menu.js"></script>
+	
+	<script src="app.js"></script>
 </head>
+
 <body>
-    <div class="window">
-
-      <!-- .toolbar-header sits at the top of your app -->
-      <header class="toolbar toolbar-header">
-        <h1 class="title">Photon</h1>
-      </header>
-
-      <!-- Your app's content goes inside .window-content -->
-      <div class="window-content">
-        <div class="pane-group">
-          <div class="pane pane-sm sidebar">
-            <nav class="nav-group">
-              <h5 class="nav-group-title">Favorites</h5>
-              <span class="nav-group-item">
-                <span class="icon icon-home"></span>
-                connors
-              </span>
-              <span class="nav-group-item active">
-                <span class="icon icon-light-up"></span>
-                Photon
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-download"></span>
-                Downloads
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-folder"></span>
-                Documents
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-window"></span>
-                Applications
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-signal"></span>
-                AirDrop
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-monitor"></span>
-                Desktop
-              </span>
-            </nav>
-          </div>
-
-          <div class="pane">
-            <table class="table-striped">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Kind</th>
-                  <th>Date Modified</th>
-                  <th>Author</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>bars.scss</td>
-                  <td>Burek</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="container">
+		<div class="side-menu">
+			<a href="#" class="close"><i class="fa fa-angle-left"></i></a>
+			<ul class="side-menu-ul">
+				<li><a href="#" class="side-search"><i class="fa fa-search fa-fw"></i> Search</a></li>
+				<li class=""><a href="#" class="side-currently-playing"><i class="fa fa-headphones fa-fw"></i> Currently Playing</a></li>
+				<!--<li><a href="#" class="side-popular-music"><i class="fa fa-list-ol fa-fw"></i> Popular Music</a></li>-->
+				<li><a href="#" class="side-your-playlist"><i class="fa fa-music fa-fw"></i> Your Playlists</a></li>
+				<!--<li><a href="#" class="side-your-profile"><i class="fa fa-user fa-fw"></i> Your Profile</a></li>-->
+				<li><a href="#" class="side-settings"><i class="fa fa-cog fa-fw"></i> Settings</a></li>
+			</ul>
+			<div class="side-menu-background"></div>
+			<div class="side-menu-search">
+				<a href="#" class="closePane"><i class="fa fa-angle-left"></i></a>
+				<a href="#" class="homePane"><i class="fa fa-home"></i></a>
+				<label for="search"> Search YouTube: </label>
+				<input type="text" name="search" id="searchInput">
+				
+				<div id="searchResults">
+				
+				</div>
+			</div>
+			<div class="side-menu-settings">
+				<a href="#" class="closePane"><i class="fa fa-angle-left"></i></a>
+				<a href="#" class="homePane"><i class="fa fa-home"></i></a>
+				<h3> Settings </h3>
+				
+			</div>
+		</div>
+		<div class="center">
+			<div class="nav">
+				<a href="#" class="side-menu-trigger"><i class="fa fa-bars"></i></a>
+				<a href="#" class="refresh-songs"><i class="fa fa-refresh"></i></a>
+			</div>
+			<div class="cover">
+				<div class="jcarousel">
+					<ul id="songsList">
+					</ul>
+				</div>
+			</div>
+			<ul class="jcarousel-pagination"></ul>
+			<div class="info">
+				<div class="name">
+					<h3 class="song"></h3>
+					<p class="artist"></p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="action">
+				<a href="#" class="previous jcarousel-prev"><i class="fa fa-step-backward"></i></a>
+				<a href="#" class="play"><i class="fa fa-play fa-fw"></i></a>
+				<a href="#" class="next jcarousel-next"><i class="fa fa-step-forward"></i></a>
+			</div>
+			<div class="length">
+				<label for="fader" id="duration-display">0:00</label>
+				<input type="range" min="0" max="100" value="0" id="fader" step="1">
+				<output for="fader" class="duration" id="durationOfSong"></output>
+			</div>
+			<div class="options">
+				<a href="#" class="shuffle active"><i class="fa fa-random"></i></a>
+				<a href="#" class="replay"><i class="fa fa-refresh"></i></a>
+				<a href="#" class="volume"><i class="fa fa-volume-up"></i></a>
+				<a href="#" class="favorite active"><i class="fa fa-heart"></i></a>
+			</div>
+			<div class="volume-slider">
+				<a href="#" class="close"><i class="fa fa-chevron-down"></i></a>
+				<div class="volume-slider-inner">
+					<i class="fa fa-volume-down"></i>
+					<input class="volume-slider" type="range" min="0" max="100" value="100" id="volume-slider" step="1">
+				<i class="fa fa-volume-up "></i>
+			</div>
+		</div>
+	</div>
+		<div id="overlays"></div>
+		<div class="overlay"></div>
+	</div>
+	<div class="download-slider">
+	<input type="range" min="0" max="100" value="0" id="download-slider">
+	</div>
+	<audio id="audio" class="audio">
+		<source src="" id="setSong" type="audio/mpeg ">
+	</audio>
+	<!--<input type="file" webkitdirectory directory multiple/>-->
   </body>
 </html>

@@ -23,6 +23,14 @@ var init = function () {
     return new Q();
 };
 
+var copySongs = function () {
+    return projectDir.copyAsync('songs', readyAppDir.path('resources/songs'), { overwrite: true });
+};
+
+var copyFfmpeg = function () {
+    return projectDir.copyAsync('ffmpeg', readyAppDir.path('resources/ffmpeg'), { overwrite: true });
+};
+
 var copyRuntime = function () {
     return projectDir.copyAsync('node_modules/electron-prebuilt/dist', readyAppDir.path(), { overwrite: true });
 };
@@ -125,6 +133,8 @@ var cleanClutter = function () {
 
 module.exports = function () {
     return init()
+        .then(copySongs)
+        .then(copyFfmpeg)
         .then(copyRuntime)
         .then(cleanupRuntime)
         .then(packageBuiltApp)

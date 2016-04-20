@@ -29,7 +29,7 @@
 ; Installation
 ; --------------------------------
 
-Unicode true
+;Unicode true
 SetCompressor /SOLID lzma
 
 Name "${productName}"

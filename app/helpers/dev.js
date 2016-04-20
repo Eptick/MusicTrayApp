@@ -9,10 +9,7 @@ var setDevMenu = function () {
             label: 'Reload',
             accelerator: 'CmdOrCtrl+R',
             click: function () {
-                //global.tray.removeAllListeners();
                 BrowserWindow.fromId(1).webContents.reloadIgnoringCache();
-                BrowserWindow.fromId(2).webContents.reloadIgnoringCache();
-                //global.tray = new Tray(__dirname + "/IconTemplate.png");
             }
         },{
             label: 'Toggle DevTools',

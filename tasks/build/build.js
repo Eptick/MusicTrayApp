@@ -24,7 +24,12 @@ var paths = {
         './**/*.html',
         './**/*.+(jpg|png|svg)',
         './photonui/**',
-        '.**.js'
+        './songs/**.mp3',
+        './ffmpeg/**',
+        './js/**',
+        './css/**',
+        './fonts/**',
+        './settings.js'
     ],
 };
 
@@ -50,8 +55,7 @@ gulp.task('copy-watch', copyTask);
 var bundleApplication = function () {
     return Q.all([
             bundle(srcDir.path('background.js'), destDir.path('background.js')),
-            bundle(srcDir.path('app.js'), destDir.path('app.js')),
-            bundle(srcDir.path('tray.js'), destDir.path('tray.js'))
+            bundle(srcDir.path('app.js'), destDir.path('app.js'))
         ]);
 };
 
