@@ -1,7 +1,4 @@
 import { app, Menu, BrowserWindow,Tray } from 'electron';
-
-
-
 var setDevMenu = function () {
     var devMenu = Menu.buildFromTemplate([{
         label: 'Development',

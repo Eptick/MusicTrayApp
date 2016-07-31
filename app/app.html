@@ -13,8 +13,9 @@
 	</script>
 	<script src="js/jquery.jcarousel.min.js"></script>
 	<script src="helpers/context_menu.js"></script>
-	
+
 	<script src="app.js"></script>
+	<script src="animate.js"></script>
 </head>
 
 <body>
@@ -23,9 +24,9 @@
 			<a href="#" class="close"><i class="fa fa-angle-left"></i></a>
 			<ul class="side-menu-ul">
 				<li><a href="#" class="side-search"><i class="fa fa-search fa-fw"></i> Search</a></li>
-				<li class=""><a href="#" class="side-currently-playing"><i class="fa fa-headphones fa-fw"></i> Currently Playing</a></li>
+				<!--<li class=""><a href="#" class="side-currently-playing"><i class="fa fa-headphones fa-fw"></i> Currently Playing</a></li>
 				<!--<li><a href="#" class="side-popular-music"><i class="fa fa-list-ol fa-fw"></i> Popular Music</a></li>-->
-				<li><a href="#" class="side-your-playlist"><i class="fa fa-music fa-fw"></i> Your Playlists</a></li>
+				<!--<li><a href="#" class="side-your-playlist"><i class="fa fa-music fa-fw"></i> Your Playlists</a></li>
 				<!--<li><a href="#" class="side-your-profile"><i class="fa fa-user fa-fw"></i> Your Profile</a></li>-->
 				<li><a href="#" class="side-settings"><i class="fa fa-cog fa-fw"></i> Settings</a></li>
 			</ul>
@@ -35,16 +36,17 @@
 				<a href="#" class="homePane"><i class="fa fa-home"></i></a>
 				<label for="search"> Search YouTube: </label>
 				<input type="text" name="search" id="searchInput">
-				
+
 				<div id="searchResults">
-				
+
 				</div>
 			</div>
 			<div class="side-menu-settings">
 				<a href="#" class="closePane"><i class="fa fa-angle-left"></i></a>
 				<a href="#" class="homePane"><i class="fa fa-home"></i></a>
 				<h3> Settings </h3>
-				
+				<br>
+				<input id="selectSongsPath" type="file" webkitdirectory directory multiple/>
 			</div>
 		</div>
 		<div class="center">
@@ -95,12 +97,9 @@
 		<div id="overlays"></div>
 		<div class="overlay"></div>
 	</div>
-	<div class="download-slider">
-	<input type="range" min="0" max="100" value="0" id="download-slider">
-	</div>
 	<audio id="audio" class="audio">
 		<source src="" id="setSong" type="audio/mpeg ">
 	</audio>
-	<!--<input type="file" webkitdirectory directory multiple/>-->
+	<!---->
   </body>
 </html>

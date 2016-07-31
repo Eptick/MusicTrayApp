@@ -7,22 +7,44 @@ var app = remote.app;
 
 var appPath;
 var songsPath;
- if (env.name !== 'production') {
-    appPath = app.getAppPath();
-    songsPath = appPath + "/../songs";
+ if(localStorage.getItem("songsPath") === null){
+
+        if (env.name !== 'production') {
+        appPath = app.getAppPath();
+        songsPath = appPath + "/../songs";
+        } else {
+        appPath = app.getAppPath().slice(0,app.getAppPath().length - 8);
+        songsPath = appPath + "songs";
+        }
+        localStorage.setItem("songsPath",songsPath);
  } else {
-    appPath = app.getAppPath().slice(0,app.getAppPath().length - 8);
-    songsPath = appPath + "songs";
-}
+     songsPath = localStorage.getItem("songsPath");
+ }
 function getAllSongs(){
-    return fs.readdirSync(songsPath);
+    var songs = fs.readdirSync(songsPath);
+    songs = songs.filter(function(x) {
+       return x.endsWith(".mp3");
+    });
+    console.log(songs.length === 0 );
+    if(songs.length === 0){
+      songs = null;
+      window.hasSongs = false;
+      return songs;
+    }
+    window.hasSongs = true;
+    return songs;
 }
 function getSongsPath(){
+    return songsPath;
+}
+function setSongsPath(path){
+    songsPath = path;
     return songsPath;
 }
 
 export default {
     appPath: appPath,
     getAllSongs: getAllSongs,
-    getSongsPath: getSongsPath
+    getSongsPath: getSongsPath,
+    setSongsPath: setSongsPath
 };

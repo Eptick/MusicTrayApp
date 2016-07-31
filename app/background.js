@@ -31,24 +31,24 @@ app.on('ready', function () {
         app.quit();
     });
     var trayWindow = new BrowserWindow({
-        width: 310, height: 480,
+        width: 710, height: 780, // width: 310, height: 480
         show: false, resizable: false, frame: false,
         movable: false
     });
     devHelper.setDevMenu();
     trayWindow.loadURL(app.getAppPath() + "/app.html");
-   
+
     trayWindow.on("blur",function(){
         if(env.name === 'production')
                 trayWindow.hide();
     });
-   
+
      if (env.name !== 'production') {
         devHelper.setDevMenu();
         trayWindow.openDevTools();
     }
-    
-    
+
+
     global.tray.on( 'double-click' , function (event, bounds) {
         if (trayWindow.isVisible()) {
             trayWindow.hide();
